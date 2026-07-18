@@ -671,3 +671,65 @@ footer {
     flex-wrap: wrap;
   }
 }
+
+
+/* Academic Homepage Manager: visitor interactions topbar v2 */
+.header-inner {
+  gap: 18px;
+}
+
+.header-inner nav {
+  margin-left: auto;
+}
+
+.header-inner .interaction-bar {
+  min-height: auto;
+  flex: 0 0 auto;
+  gap: 6px;
+}
+
+.header-inner .interaction-stat,
+.header-inner .like-button {
+  min-height: 31px;
+  gap: 6px;
+  padding: 5px 9px;
+  border-color: #dfe4ea;
+  background: #f8f9fb;
+  font-size: inherit;
+}
+
+.header-inner .heart-icon {
+  font-size: 16px;
+}
+
+.header-inner .view-icon {
+  width: 13px;
+  height: 13px;
+}
+
+.header-inner .view-icon::after {
+  inset: 3.5px;
+}
+
+@media (max-width: 700px) {
+  .header-inner {
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    padding: 8px 0;
+  }
+
+  .header-inner nav {
+    margin-left: 0;
+  }
+
+  .header-inner .interaction-stat > span:last-child,
+  .header-inner .like-button > span:last-child {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .header-inner .interaction-bar {
+    width: 100%;
+  }
+}
