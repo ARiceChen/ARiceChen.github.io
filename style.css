@@ -560,3 +560,114 @@ footer {
   font-weight: 650;
   white-space: nowrap;
 }
+
+
+/* Academic Homepage Manager: visitor interactions */
+.interaction-section {
+  padding: 26px 0 10px;
+  background: var(--paper, #ffffff);
+}
+
+.interaction-bar {
+  display: flex;
+  min-height: 50px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--muted, #667085);
+}
+
+.interaction-bar[hidden] {
+  display: none;
+}
+
+.interaction-stat,
+.like-button {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 13px;
+  border: 1px solid var(--line, #dfe4ea);
+  border-radius: 999px;
+  background: #ffffff;
+  color: #667085;
+  font: inherit;
+  line-height: 1;
+}
+
+.interaction-stat strong,
+.like-button strong {
+  color: var(--ink, #172033);
+  font-variant-numeric: tabular-nums;
+}
+
+.like-button {
+  cursor: pointer;
+  transition: border-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.like-button:hover {
+  border-color: #e4a9b3;
+  color: #c9233e;
+  transform: translateY(-1px);
+}
+
+.like-button:focus-visible {
+  outline: 3px solid rgba(201, 35, 62, 0.18);
+  outline-offset: 2px;
+}
+
+.like-button.is-liked {
+  border-color: #e8a6b2;
+  background: #fff5f6;
+  color: #c9233e;
+}
+
+.like-button.is-liked strong {
+  color: #a91931;
+}
+
+.like-button.has-error {
+  animation: interaction-shake 240ms ease-in-out 2;
+}
+
+.heart-icon {
+  min-width: 14px;
+  color: #c9233e;
+  font-size: 18px;
+  line-height: 0.8;
+  text-align: center;
+}
+
+.view-icon {
+  position: relative;
+  width: 15px;
+  height: 15px;
+  border: 1.5px solid #687386;
+  border-radius: 11px 2px 11px 2px;
+  transform: rotate(45deg);
+}
+
+.view-icon::after {
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  background: #687386;
+  content: "";
+}
+
+@keyframes interaction-shake {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(3px); }
+}
+
+@media (max-width: 620px) {
+  .interaction-section {
+    padding-top: 20px;
+  }
+
+  .interaction-bar {
+    flex-wrap: wrap;
+  }
+}

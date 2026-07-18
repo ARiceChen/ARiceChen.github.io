@@ -33,6 +33,7 @@
       .authors { font-size: 12px; }
       .venue, .publication-year { font-size: 12px; }
       .ccf-badge, .jcr-badge, .status-badge { font-size: 9.5px; }
+      .interaction-bar { font-size: 12.5px; }
       .footer-inner { font-size: 11.5px; }
 
       @media (max-width: 620px) {
@@ -232,6 +233,112 @@
           </div>
         </div>
       </section>
+
+      <section class="interaction-section" aria-label="Visitor interactions">
+        <div class="container">
+          <div
+            class="interaction-bar"
+            data-interaction-widget
+            data-api-url="https://aricechen-homepage-interactions.aricechen-homepage.workers.dev"
+            hidden
+          >
+          <span class="interaction-stat" data-visits-item>
+            <span class="view-icon" aria-hidden="true"></span>
+            <strong data-visit-count>0</strong>
+            <span>Visits</span>
+          </span>
+          <button
+            class="like-button"
+            type="button"
+            aria-pressed="false"
+            data-like-button
+          >
+            <span class="heart-icon" aria-hidden="true">♡</span>
+            <strong data-like-count>0</strong>
+            <span>Likes</span>
+          </button>
+          </div>
+        </div>
+      </section>
+      <script>
+        (() => {
+          const widget = document.querySelector("[data-interaction-widget]");
+          if (!widget) return;
+
+          const apiUrl = widget.dataset.apiUrl;
+          const visitCount = widget.querySelector("[data-visit-count]");
+          const likeCount = widget.querySelector("[data-like-count]");
+          const likeButton = widget.querySelector("[data-like-button]");
+          let liked = false;
+
+          const format = (value) =>
+            new Intl.NumberFormat("en-US").format(Math.max(0, Number(value) || 0));
+
+          const render = (stats) => {
+            if (visitCount) visitCount.textContent = format(stats.visits);
+            if (likeCount) likeCount.textContent = format(stats.likes);
+            liked = Boolean(stats.liked);
+            if (likeButton) {
+              likeButton.setAttribute("aria-pressed", String(liked));
+              likeButton.classList.toggle("is-liked", liked);
+              likeButton.querySelector(".heart-icon").textContent = liked ? "♥" : "♡";
+            }
+            widget.hidden = false;
+          };
+
+          const visitorId = (() => {
+            try {
+              const key = "academic-homepage-visitor-id";
+              let value = localStorage.getItem(key);
+              if (!value) {
+                value = crypto.randomUUID();
+                localStorage.setItem(key, value);
+              }
+              return value;
+            } catch {
+              return "";
+            }
+          })();
+
+          const request = async (path, body) => {
+            const controller = new AbortController();
+            const timer = setTimeout(() => controller.abort(), 6000);
+            try {
+              const response = await fetch(apiUrl + path, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body),
+                credentials: "omit",
+                signal: controller.signal
+              });
+              if (!response.ok) throw new Error("Interaction service unavailable");
+              return await response.json();
+            } finally {
+              clearTimeout(timer);
+            }
+          };
+
+          if (!apiUrl || !visitorId) {
+            if (location.protocol === "file:") render({ visits: 0, likes: 0, liked: false });
+            return;
+          }
+
+          request("/visit", { visitorId }).then(render).catch(() => {});
+
+          likeButton?.addEventListener("click", async () => {
+            if (likeButton.disabled) return;
+            likeButton.disabled = true;
+            try {
+              render(await request("/like", { visitorId, liked: !liked }));
+            } catch {
+              likeButton.classList.add("has-error");
+              setTimeout(() => likeButton.classList.remove("has-error"), 900);
+            } finally {
+              likeButton.disabled = false;
+            }
+          });
+        })();
+      </script>
     </main>
 
     <footer>
