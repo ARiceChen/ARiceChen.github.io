@@ -1049,3 +1049,151 @@ body,
     animation: none;
   }
 }
+
+
+/* Academic Homepage Manager: integrated profile news v1 */
+.container {
+  width: min(1120px, calc(100% - 48px));
+}
+
+.profile-section {
+  padding-top: 48px;
+  padding-bottom: 50px;
+}
+
+.profile-grid {
+  grid-template-columns: 238px minmax(0, 1fr);
+  gap: 40px;
+}
+
+.profile-content h1 {
+  margin-bottom: 20px;
+}
+
+.profile-details-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 0.72fr);
+  align-items: start;
+  gap: 30px;
+}
+
+.profile-summary {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.bio {
+  max-width: 72ch;
+  margin-bottom: 16px;
+  line-height: 1.68;
+}
+
+.profile-content.has-news .profile-links {
+  margin-top: 0;
+}
+
+.profile-news {
+  min-width: 0;
+  padding: 15px 16px 14px;
+  border: 1px solid #e0e5eb;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.68);
+  box-shadow: 0 8px 22px rgba(23, 32, 51, 0.045);
+}
+
+.profile-news-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.profile-news-heading h2 {
+  margin: 0;
+  color: #2b384d;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.news-live-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--red, #c9233e);
+  box-shadow: 0 0 0 4px rgba(201, 35, 62, 0.09);
+}
+
+.news-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.news-list li {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 9px;
+}
+
+.news-list time {
+  color: var(--red, #c9233e);
+  font-size: 10px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.news-list a,
+.news-list li > span {
+  color: #586579;
+  font-size: 11.5px;
+  line-height: 1.45;
+  text-decoration: none;
+}
+
+.news-list a:hover {
+  color: var(--link, #165b9c);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 1000px) {
+  .profile-details-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .profile-news {
+    max-width: 620px;
+  }
+}
+
+@media (max-width: 620px) {
+  .container {
+    width: min(1120px, calc(100% - 32px));
+  }
+
+  .profile-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .profile-content h1 {
+    margin-bottom: 17px;
+  }
+
+  .profile-news {
+    max-width: none;
+  }
+
+  .news-list li {
+    grid-template-columns: 40px minmax(0, 1fr);
+  }
+}
