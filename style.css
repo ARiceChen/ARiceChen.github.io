@@ -1197,3 +1197,124 @@ body,
     grid-template-columns: 40px minmax(0, 1fr);
   }
 }
+
+
+/* Academic Homepage Manager: academic service v1 */
+.service-section {
+  padding: 56px 0 66px;
+  border-top: 1px solid var(--line, #dfe4ea);
+  background: linear-gradient(180deg, #f7f9fb 0%, #fbfcfd 100%);
+}
+
+.service-title-block {
+  margin-bottom: 24px;
+}
+
+.service-shell {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  overflow: hidden;
+  border: 1px solid #dce3eb;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 12px 34px rgba(23, 32, 51, 0.055);
+}
+
+.service-role-card {
+  position: relative;
+  display: flex;
+  min-height: 184px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px;
+  overflow: hidden;
+  background: var(--ink, #172033);
+  color: #ffffff;
+}
+
+.service-role-card::after {
+  position: absolute;
+  right: -28px;
+  bottom: -42px;
+  width: 118px;
+  height: 118px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  content: "";
+}
+
+.service-role-card span {
+  color: #aab6c8;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.service-role-card strong {
+  margin-top: 8px;
+  font-family: var(--serif, Georgia, serif);
+  font-size: 26px;
+  line-height: 1.1;
+}
+
+.service-role-card i {
+  width: 34px;
+  height: 3px;
+  margin-top: 18px;
+  border-radius: 999px;
+  background: var(--red, #c9233e);
+}
+
+.service-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: center;
+  margin: 0;
+  padding: 20px 26px;
+  list-style: none;
+}
+
+.service-list li {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  align-items: start;
+  gap: 10px;
+  margin: 4px;
+  padding: 14px 16px;
+  border: 1px solid #edf0f4;
+  border-radius: 8px;
+  background: #fbfcfd;
+}
+
+.service-index {
+  color: var(--red, #c9233e);
+  font-family: var(--serif, Georgia, serif);
+  font-size: 11px;
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+}
+
+.service-journal {
+  color: #3d4b60;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+@media (max-width: 760px) {
+  .service-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .service-role-card {
+    min-height: auto;
+    padding: 22px 24px;
+  }
+
+  .service-list {
+    grid-template-columns: 1fr;
+    padding: 10px 16px;
+  }
+
+}
