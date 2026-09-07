@@ -1335,3 +1335,20 @@ body,
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
+
+
+/* Academic Homepage Manager: presentation badge v2 */
+.presentation-badge {
+  display: inline-flex;
+  min-height: 25px;
+  align-items: center;
+  padding: 0 9px;
+  border: 1px solid #d89a20;
+  border-radius: 3px;
+  background: #fff4d6;
+  box-shadow: none;
+  color: #875300;
+  font-weight: 850;
+  letter-spacing: 0.05em;
+  text-transform: none;
+}
